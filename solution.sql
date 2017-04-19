@@ -93,7 +93,25 @@ SELECT location, COUNT(location) FROM subjects GROUP BY location;
 
 -- List all books. Display the book_id, title, and a count of how many editions each book has. (hint: requires GROUP BY and JOIN)
 
+-- Books
+-- Editions
+--
+
+SELECT books.id, books.title, COUNT(*)
+FROM books
+JOIN editions ON books.id = editions.book_id
+GROUP BY books.id;
 
 
+-- List how many books each author has written
 
+SELECT authors.first_name, authors.last_name, COUNT(*)
+FROM books
+JOIN authors ON books.author_id = authors.id
+GROUP BY authors.id;
+
+-- what is a union?
+-- combines two queries with the same result schema (columns)
+
+(SELECT * FROM books WHERE title LIKE '%The%') UNION (SELECT * FROM books WHERE title LIKE '%oo%');
 
